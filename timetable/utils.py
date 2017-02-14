@@ -1,6 +1,5 @@
 import base64
 import uuid
-from timetable.models import TimeRecordLog
 
 #: url safe uuid
 def get_a_uuid():

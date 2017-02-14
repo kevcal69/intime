@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django.auth.contrib import User
+from django.contrib.auth.models import User
 
 from timetable.utils import get_a_uuid
 
