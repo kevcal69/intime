@@ -1,0 +1,18 @@
+<script id="login-template" type="text/x-handlebars-template">
+    <section id="login" class="container grid-480">
+        <div class="empty">
+            <img src="https://cdn1.iconfinder.com/data/icons/unique-round-blue/93/user-512.png" class="avatar" />
+            <div class="divider"></divider>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="form-group {% if form.errors %}has-danger{% endif %}">
+                    <input class="form-input" for="id_username" name="username" type="text" id="input-example-1" placeholder="Username" />
+                </div>
+                <div class="form-group {% if form.errors %}has-danger{% endif %}">
+                    <input class="form-input" type="password" name="password" id="input-example-1" placeholder="Password" />
+                </div>
+                <button class="btn">Enter</button>
+            </form>
+        </div>
+    </section>
+</script>

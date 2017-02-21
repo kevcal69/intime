@@ -1,0 +1,60 @@
+{% verbatim %}
+    <script id="widget-template" type="text/x-handlebars-template">
+        <section id="profile" class="container grid-480">
+            <header class="text-center">
+                <ul class="menu">
+                    <li class="menu-item">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">{{ fullname }}</h3>
+                                <h6 class="card-meta">Last Activity: February 14, 2017</h6>
+                            </div>
+                            <div class="card-body text-center">
+                                <div class="chip-sm time-status label-danger">
+                                    <img src="http://icons.iconarchive.com/icons/double-j-design/origami-colored-pencil/256/blue-clock-icon.png" class="avatar" />
+                                    <span> 12 : 44 AM </span>
+
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn float-left">Time In</button>
+                                <button class="btn float-right">Time Out</button>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- menu header -->
+                    <li class="menu-header">
+                        <span class="menu-header-text">
+                            Status
+                        </span>
+                    </li>
+                    <!-- menu item -->
+                    <li class="menu-item">
+                        <a href="#">
+                            <div class="chip-sm">
+                                 Total # hours :
+                            </div>
+                            64:45 HHMM
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#">
+                            <div class="chip-sm">
+                                 Php :
+                            </div>
+                            1,000.00
+                        </a>
+                    </li>
+                    <!-- menu divider -->
+                    <li class="divider"></li>
+                    <li class="menu-item">
+                        <a href="#">
+                            <i class="icon icon-link"></i> Settings
+                        </a>
+                    </li>
+                </ul>
+            </header>
+        </section>
+    </script>
+{% endverbatim %}

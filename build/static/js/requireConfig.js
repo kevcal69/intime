@@ -1,12 +1,13 @@
 requirejs.config({
     baseUrl: '/assets/js',
     paths: {
-        JQ: 'lib/jquery/jquery-3.1.1.min',
+        jquery: 'lib/jquery/jquery-3.1.1.min',
+        mustache: 'lib/mustache/mustache.min'
     },
     shim: {
-        'JQuery': {
+        'jquery': {
             deps: [],
-            exports: 'JQuery'
+            exports: 'jquery'
         },
     }
 });

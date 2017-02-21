@@ -1,4 +1,5 @@
-{% load static %}
+ {% load static %}
+ {% load jsvars %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -8,14 +9,21 @@
                 InTime
             {% endblock %}
         </title>
-        <link rel="stylesheet" href="{% static '/styles/main.css'%}">
+        <link rel="stylesheet" href="{% static '/styles/lib/spectre.min.css'%}">
         {% block styles %}
         {% endblock %}
     </head>
     <body>
+
+        {% block content %}
+        {% endblock %}
+
+
+
         <script src="{% static '/js/lib/requirejs/require.js' %}" charset="utf-8"></script>
         <script src="{% static '/js/requireConfig.js' %}" charset="utf-8"></script>
-        {% block scripts %}
+        {% block javascripts %}
         {% endblock %}
+        {% javascript_variables %}
     </body>
 </html>
