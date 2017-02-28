@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load jsvars %}
+
+
+{% block page_title %}
+    Home
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'site/home.css' %}">
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{% static '/js/home.js' %}" charset="utf-8"></script>
+{% endblock %}
+
+{% javascript_variables %}
+
+
+{% block content %}
+<section id="login" class="container grid-960">
+    <header class="navbar">
+        <section class="navbar-section">
+            <div class="navbar-brand">
+                <h3>
+                    <i class="fa fa-hourglass" aria-hidden="true"></i> Intime
+                </h3>
+            </div>
+            <a href="#" class="btn btn-link">features</a>
+            <a href="#" class="btn btn-link">documents</a>
+        </section>
+        <section class="navbar-section">
+            <div class="columns nav-chip-container">
+            </div>
+        </section>
+    </header>
+    <div class="divider"></div>
+
+    <div class="container">
+    <div class="columns">
+        <div class="column col-9">
+            <h4>Today's Logs</h4>
+            <table class="table table-hover">
+            <thead>
+                <tr>
+                <th>Timestamp</th>
+                <th>Status</th>
+                <th>Remarks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>The Shawshank Redemption</td>
+                    <td>Crime, Drama</td>
+                    <td>14 October 1994</td>
+                </tr>
+                <tr>
+                    <td>The Shawshank Redemption</td>
+                    <td>Crime, Drama</td>
+                    <td>14 October 1994</td>
+                </tr>
+                <tr>
+                    <td>The Shawshank Redemption</td>
+                    <td>Crime, Drama</td>
+                    <td>14 October 1994</td>
+                </tr>
+                <tr>
+                    <td>The Shawshank Redemption</td>
+                    <td>Crime, Drama</td>
+                    <td>14 October 1994</td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+
+        <div class="column col-3">
+            <div class="card">
+                <div class="card-image">
+                    <time id="clock" datetime="" class="centered"></time>
+                </div>
+                <div class="card-header">
+                    <h4 class="card-title">Microsoft</h4>
+                    <h6 class="card-meta">Software and hardware</h6>
+                </div>
+                <div class="card-footer float-right">
+                    <button class="btn">Time Out</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+{% endblock%}
+
+{% block mustachetemplates %}
+    {% include 'mustachetemplates/nav_chip.html' %}
+{% endblock %}

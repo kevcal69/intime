@@ -17,14 +17,14 @@ define(function (require) {
 
     Renderer.prototype.activate = function (clean) {
         this.alwaysClean = clean || this.alwaysClean;
-        var renderedTemplate = Mustache.render(this.template, this.data);        
+        var renderedTemplate = Mustache.render(this.template, this.data);
         if (this.alwaysClean) {
             this.container.empty();
         }
 
         this.container.append(renderedTemplate);
         if (this.callback) {
-            this.callback(this.container.find(this.templateid));
+            this.callback(renderedTemplate);
         }
     }
 

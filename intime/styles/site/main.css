@@ -1,0 +1,11 @@
+body {
+    background: #ecf0f1;
+}
+#login {
+    margin-top: 100px;
+    background: none;
+}
+
+#login .empty {
+    background: none;
+}

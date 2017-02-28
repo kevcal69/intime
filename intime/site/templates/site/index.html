@@ -8,14 +8,39 @@
 {% endblock %}
 
 {% block styles %}
+    <link rel="stylesheet" href="{% static 'site/main.css' %}">
 {% endblock %}
-
-{% block content %}
-    
-{% endblock%}
 
 {% block javascripts %}
     <script src="{% static '/js/login.js' %}" charset="utf-8"></script>
 {% endblock %}
 
 {% javascript_variables %}
+
+
+{% block content %}
+<section id="login" class="container grid-480">
+    <div class="text-center">
+        <h2>Intime</h2>
+    </div>
+    <div class="empty">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="form-group {% if form.errors %}has-danger{% endif %}">
+                <input class="form-input" for="id_username" name="username" type="text" id="input-example-1" placeholder="Username" />
+            </div>
+            <div class="form-group {% if form.errors %}has-danger{% endif %}">
+                <input class="form-input" type="password" name="password" id="input-example-1" placeholder="Password" />
+            </div>
+            {% if form.errors %}
+            <div class="form-group ">
+                <div class="label label-danger">
+                    Username or Password do not match
+                </div>
+            </div>
+            {% endif %}
+            <button class="btn float-right">Enter</button>
+        </form>
+    </div>
+</section>
+{% endblock%}

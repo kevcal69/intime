@@ -11,7 +11,7 @@ from intime.contrib.views import TemplateView
 from django.contrib.auth.forms import AuthenticationForm
 
 class HomeView(NeoLoginRequiredMixin, TemplateView):
-    template_name = 'home.html'
+    template_name = 'site/home.html'
 
 
 class LoginView(FormView):

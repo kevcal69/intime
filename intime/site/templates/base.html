@@ -9,15 +9,16 @@
                InTime
            {% endblock %}
        </title>
-       <!-- <link rel="stylesheet" href="{% static '/styles/lib/spectre.min.css'%}"> -->
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+       <link rel="stylesheet" href="{% static 'site/spectre.min.css' %}">
        {% block styles %}
        {% endblock %}
    </head>
    <body>
-
-       {% block content %}
-       {% endblock %}
-
+       <section class="section container-section">
+           {% block content %}
+           {% endblock %}
+        </section>
 
 
        <script src="{% static '/js/lib/requirejs/require.js' %}" charset="utf-8"></script>
@@ -25,5 +26,8 @@
        {% block javascripts %}
        {% endblock %}
        {% javascript_variables %}
+
+       {% block mustachetemplates %}
+       {% endblock %}
    </body>
 </html>
