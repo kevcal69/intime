@@ -1,0 +1,14 @@
+<script type="text/javascript">
+    var vars = {content: {}, user: null};
+    {% for key, value in vars.items %}
+        try {
+            vars.content['{{ key }}'] = JSON.parse('{{ value|safe|escapejs }}');
+        } catch (e) {
+            vars.content['{{ key }}'] = "{{ value }}";
+        }
+    {% endfor %}
+
+    var user = "{{ usr|safe|escapejs }}";
+    vars.user = JSON.parse(user);
+
+</script>
