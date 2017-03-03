@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from django.views.generic import FormView, RedirectView
+from django.views.generic import FormView, RedirectView, View
 # from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import logout, login
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.conf import settings
 
@@ -10,7 +10,10 @@ from intime.contrib.mixins import NeoLoginRequiredMixin
 from intime.contrib.views import TemplateView
 from django.contrib.auth.forms import AuthenticationForm
 
-class HomeView(NeoLoginRequiredMixin, TemplateView):
+from intime.site.models import TimeRecordLog
+from intime.site.mixins import TimeRecordMixin
+
+class HomeView(TimeRecordMixin, NeoLoginRequiredMixin, TemplateView):
     template_name = 'site/home.html'
 
 
@@ -48,9 +51,23 @@ class LoginView(FormView):
 class LogoutView(NeoLoginRequiredMixin, RedirectView):
     url = 'logout'
 
-    def get(self, *rags, **kwargs):
+    def get(self, *args, **kwargs):
         logout(self.request)
-        return super(LogoutView, self).get()
+        return super(LogoutView, self).get(kwargs)
 
     def get_redirect_url(self, *args, **kwargs):
         return reverse_lazy(self.url)
+
+
+class TimeinView(NeoLoginRequiredMixin, View):
+
+    def post(self, *args, **kwargs):
+        if self.request.user:
+            uuid = self.request.POST.get('uuid')
+            print uuid
+            if not uuid:
+                TimeRecordLog.objects.timein(self.request.user)
+                return HttpResponse({}, 200)
+            else:
+                TimeRecordLog.objects.timeout(self.request.user, uuid)
+        return HttpResponse({}, 400)

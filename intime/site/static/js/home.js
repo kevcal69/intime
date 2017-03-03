@@ -1,7 +1,9 @@
 require([
     'jquery',
-    'utils/renderer'
-], function($, $R) {
+    'utils/renderer',
+    'utils/clock',
+    'utils/cookie'
+], function($, $R, clock, cookie) {
     var avatar = 'https://freeiconshop.com/wp-content/uploads/edd/person-flat.png';
 
     var profile = new $R({
@@ -11,37 +13,49 @@ require([
         data: {
             full_name: "Kev Cal",
             avatar_url: avatar
+        }
+    });
+    var lastRec = vars.content.records.slice(-1)[0] || {};
+    lastRec = (lastRec.active)? lastRec : {};
+    console.log(lastRec);
+    var timecard = new $R({
+        container : $('.timecard'),
+        template : $('#timecard').html(),
+        auto_activate: true,
+        data: {
+            today: lastRec.in,
+            total: "",
+            uuid: lastRec.uuid,
+            active: lastRec.active
         },
         callback: function (template) {
-            var $template = $(template);
-            $template.find('.logout').on('click', function() {
-                console.log('fuck it');
+            clock();
+            $(this.container).on('click', '.time' ,function(e) {
+                var uuid = $(this).data('uuid');
+                $.ajax({
+                    type: "POST",
+                    data: {
+                        csrfmiddlewaretoken: cookie('csrftoken'),
+                        uuid: uuid
+                    },
+                    url: "/timein",
+                    success: function (code) {
+                        console.log(code);
+                    }
+                });
+            });
+            var logContainer = $(".logs")
+            vars.content.records.forEach(function(obj) {
+                logContainer.append(
+                    "<tr class="+(obj.active || "")+">" +
+                        "<td>" + obj.uuid + "</td>" +
+                        "<td>" + (obj.time || "----") + "</td>" +
+                        "<td>" + obj.in + "</td>" +
+                        "<td>" + (obj.out || "-------") + "</td>" +
+                    "</tr>"
+                );
             });
         }
     });
 
-    var clock = clock || {
-        el: {
-            clock: document.getElementById('clock')
-        },
-
-        init: function () {
-            setInterval(this.update, 1000);
-        },
-        update: function () {
-            var d = new Date(),
-            h = strPad(d.getHours()),
-            m = strPad(d.getMinutes());
-            s = strPad(d.getSeconds());
-
-            clock.el.clock.innerHTML = h + ':' + m + '<span> :' + s +'</span>';
-        }
-    }
-
-    function strPad(n) {
-        return String("00" + n).slice(-2);
-    }
-    $(function () {
-        clock.init();
-    });
 });

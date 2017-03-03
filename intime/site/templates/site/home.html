@@ -44,49 +44,19 @@
             <table class="table table-hover">
             <thead>
                 <tr>
-                <th>Timestamp</th>
-                <th>Status</th>
-                <th>Remarks</th>
+                    <th>UUID</th>
+                    <th>TIME (HH:MM)</th>
+                    <th>TIME IN</th>
+                    <th>TIME OUT</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>The Shawshank Redemption</td>
-                    <td>Crime, Drama</td>
-                    <td>14 October 1994</td>
-                </tr>
-                <tr>
-                    <td>The Shawshank Redemption</td>
-                    <td>Crime, Drama</td>
-                    <td>14 October 1994</td>
-                </tr>
-                <tr>
-                    <td>The Shawshank Redemption</td>
-                    <td>Crime, Drama</td>
-                    <td>14 October 1994</td>
-                </tr>
-                <tr>
-                    <td>The Shawshank Redemption</td>
-                    <td>Crime, Drama</td>
-                    <td>14 October 1994</td>
-                </tr>
+            <tbody class="logs">
             </tbody>
             </table>
         </div>
 
-        <div class="column col-3">
-            <div class="card">
-                <div class="card-image">
-                    <time id="clock" datetime="" class="centered"></time>
-                </div>
-                <div class="card-header">
-                    <h4 class="card-title">Microsoft</h4>
-                    <h6 class="card-meta">Software and hardware</h6>
-                </div>
-                <div class="card-footer float-right">
-                    <button class="btn">Time Out</button>
-                </div>
-            </div>
+        <div class="timecard column col-3">
+
         </div>
     </div>
     </div>
@@ -95,4 +65,5 @@
 
 {% block mustachetemplates %}
     {% include 'mustachetemplates/nav_chip.html' %}
+    {% include 'mustachetemplates/timecard.html' %}
 {% endblock %}

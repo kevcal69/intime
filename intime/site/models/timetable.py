@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+from datetime import timedelta, datetime
 
 from django.db import models
 from django.contrib.auth.models import User
@@ -12,24 +13,27 @@ class Profile(models.Model):
 class TimeRecord(models.Model):
     datatime_records = models.DateTimeField(auto_now_add=True)
 
+
 class TimeRecordLogManager(models.Manager):
 
-    def timeIn(self, usr):
+    def timein(self, usr):
         timerec = TimeRecord.objects.create()
-        self.create(owner=usr, datetimeIn=timerec, uuid=get_a_uuid())
+        a = self.create(owner=usr, datetimein=timerec, uuid=get_a_uuid())
+        print a
 
-    def timeout(self, uuid):
-        timerecord = self.filter(uuid=uuid, datetimeout=null).last()
+    def timeout(self, usr, uuid):
+        timerecord = self.filter(owner=usr, uuid=uuid, datetimeout=None).last()
         if timerecord:
             timerec = TimeRecord.objects.create()
             timerecord.datetimeout = timerec
+            timerecord.closed = True
             timerecord.save()
 
 
 class TimeRecordLog(models.Model):
     owner = models.ForeignKey(User, related_name='timelog')
 
-    datetimeIn = models.ForeignKey(
+    datetimein = models.ForeignKey(
         TimeRecord, null=True, blank=True, related_name='datetimein')
     datetimeout = models.ForeignKey(
         TimeRecord, null=True, blank=True, related_name='datetimeout')
@@ -41,10 +45,25 @@ class TimeRecordLog(models.Model):
     objects = TimeRecordLogManager()
 
 
+    @property
+    def str_datetimein(self):
+        if self.datetimein:
+            return self.datetimein.datatime_records.strftime('%Y-%m-%d %H:%M')
+        else:
+            return ""
 
-    def save(self, *args, **kwargs):
-        if (not self.closed and self.datetimeIn and
-            not self.datetimeout and kwargs['timeout']):
-            self.closed = True
-            del kwargs['timeout']
-        super(TimeinRecords, self).save(*args, **kwargs)
+    @property
+    def str_datetimeout(self):
+        if self.datetimeout:
+            return self.datetimeout.datatime_records.strftime('%Y-%m-%d %H:%M')
+        else:
+            return ""
+
+    @property
+    def get_time(self):
+        if self.datetimeout:
+            diff = (self.datetimeout.datatime_records -
+                self.datetimein.datatime_records)
+            return str(diff)[0:str(diff).rindex(':')]
+        else:
+            return 0

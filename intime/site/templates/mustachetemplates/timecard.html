@@ -1,0 +1,24 @@
+{% verbatim %}
+    <script id="timecard" type="text/x-handlebars-template">
+        <div class="card">
+            <div class="card-image">
+                <time id="clock" datetime="" class="centered"></time>
+            </div>
+            <div class="card-header">
+                <h4 class="card-title">Time summary</h4>
+                <h6 class="card-meta">Today: {{ today }} </h6>
+                <h6 class="card-meta">Sem: {{ total }}</h6>
+            </div>
+            {{ #active }}
+                <div class="card-footer float-right">
+            {{ /active }}
+            {{ ^active }}
+                <div class="card-footer float-left">
+            {{ /active }}
+                    <button class="btn time" data-uuid="{{ uuid }}">Time</button>
+                </div>
+
+
+        </div>
+    </script>
+{% endverbatim %}
