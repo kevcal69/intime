@@ -1,10 +1,8 @@
-from django.shortcuts import render
 from django.views.generic import FormView, RedirectView, View
 # from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import logout, login
 from django.http import HttpResponseRedirect, HttpResponse
-from django.core.urlresolvers import reverse_lazy, reverse
-from django.conf import settings
+from django.core.urlresolvers import reverse_lazy
 
 from intime.contrib.mixins import NeoLoginRequiredMixin
 from intime.contrib.views import TemplateView
@@ -12,6 +10,7 @@ from django.contrib.auth.forms import AuthenticationForm
 
 from intime.site.models import TimeRecordLog
 from intime.site.mixins import TimeRecordMixin
+
 
 class HomeView(TimeRecordMixin, NeoLoginRequiredMixin, TemplateView):
     template_name = 'site/home.html'

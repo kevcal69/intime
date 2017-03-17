@@ -1,14 +1,14 @@
 from __future__ import unicode_literals
-from datetime import timedelta, datetime
 
 from django.db import models
 from django.contrib.auth.models import User
 
 from intime.site.utils import get_a_uuid
 
-# Create your models here.
+
 class Profile(models.Model):
     owner = models.ForeignKey(User, related_name='owner')
+
 
 class TimeRecord(models.Model):
     datatime_records = models.DateTimeField(auto_now_add=True)
@@ -44,7 +44,6 @@ class TimeRecordLog(models.Model):
     uuid = models.CharField(max_length=50, blank=False, null=False)
     objects = TimeRecordLogManager()
 
-
     @property
     def str_datetimein(self):
         if self.datetimein:
@@ -63,7 +62,7 @@ class TimeRecordLog(models.Model):
     def get_time(self):
         if self.datetimeout:
             diff = (self.datetimeout.datatime_records -
-                self.datetimein.datatime_records)
+                    self.datetimein.datatime_records)
             return str(diff)[0:str(diff).rindex(':')]
         else:
             return 0

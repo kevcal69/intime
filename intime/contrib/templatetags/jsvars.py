@@ -11,5 +11,6 @@ def javascript_variables(context):
     usr = context.get('usr', {})
     return {'vars': view_variables, 'usr': usr}
 
-register.inclusion_tag('tags/jsvars.html',
-                       takes_context=True)(javascript_variables)
+
+register.\
+    inclusion_tag('tags/jsvars.html', takes_context=True)(javascript_variables)

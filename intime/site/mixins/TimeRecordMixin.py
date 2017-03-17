@@ -1,6 +1,7 @@
 import json
 from intime.site.models import TimeRecordLog
 
+
 class TimeRecordMixin(object):
 
     def get_context_data(self, *args, **kwargs):
@@ -11,7 +12,7 @@ class TimeRecordMixin(object):
         for r in rec:
             records.append(self.record_to_dict(r))
         context['vars'] = {
-            'records' : json.dumps(records)
+            'records': json.dumps(records)
         }
         return context
 
@@ -21,7 +22,7 @@ class TimeRecordMixin(object):
             'out': rec.str_datetimeout,
             'active': not rec.closed,
             'uuid': rec.uuid,
-            'time' : rec.get_time
+            'time': rec.get_time
         }
 
         return rec
